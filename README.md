@@ -2,218 +2,151 @@
   <img src="icon.png" alt="Dictaria icon" width="180">
 </p>
 
-# Dictaria
+# Dictaria 🎤 - Local Speech-to-Text Powered by Faster Whisper
 
-Dictaria is a small local desktop tool for multi-language speech-to-text. 
-It uses [faster-whisper](https://github.com/SYSTRAN/faster-whisper), `sounddevice`, and a minimalist Tkinter GUI.
+Dictaria is a small, cross-platform desktop tool designed for multi-language speech-to-text transcription. It runs entirely **locally** on your machine, ensuring privacy and speed.
 
-You select up to five favorite languages, pick one flag, and then use a global hotkey to start and stop recording from your microphone. Transcription is done locally on your machine.
+It leverages the power of **`faster-whisper`** for high-performance transcription and provides a minimalist, distraction-free GUI built with Tkinter.
 
-## Features
+## ✨ Features
 
-- Local speech-to-text using `faster-whisper`
-- Multiple languages selectable from a menu
-- Up to 5 favorite languages with flag icons
-- Clickable favorites row above the record button
-- Global hotkey: `Cmd + Shift + J` (on macOS, or Win + Shift + J on a PC keyboard)
-- Dark mode and light mode toggle (☾ / ☀︎)
-- Minimal, distraction-free GUI in Tkinter
-- System messages in English, transcribed text in the selected language
-- Simple JSON config file to remember favorites, last language, theme and help panel visibility
+- **Local Processing:** All speech-to-text processing happens instantly on your machine (CPU or GPU).
+- **High Performance:** Uses `faster-whisper` for efficient transcription.
+- **Multi-Language Support:** Supports all languages available in Whisper.
+- **Favorites:** Select up to **5 favorite languages** displayed as clickable flag icons.
+- **Global Hotkey:** Use a convenient hotkey (`Ctrl/Cmd + Shift + J`) to toggle recording from any application.
+- **Minimalist GUI:** Dark-themed, distraction-free interface built with native Tkinter.
+- **Configuration Persistence:** Remembers your favorite languages, active language, and theme using a simple JSON config file.
 
-## How it works
+## 🛠️ Installation and Setup
 
-Dictaria is a single Python script that:
+Dictaria requires **Python 3.8+**. The core dependency for audio handling is `sounddevice`, which requires the **PortAudio** library to be installed on your system.
 
-1. Loads a `faster-whisper` model (by default `medium`) on CPU.
-2. Opens a Tkinter window with:
- - Top bar with app name, instructions, theme toggle and language menu
- - A favorites row showing up to five language flags
- - A round red record button
- - A scrollable text area for transcription output
-3. Listens to your microphone using `sounddevice` and records audio chunks.
-4. After you stop recording, it writes the audio to a temporary `.wav` file.
-5. Uses `WhisperModel.transcribe()` from `faster-whisper` with the selected language code.
-6. Appends the recognized text to the text box.
-
-All speech-to-text processing happens locally.
-
-## Installation (macOS)
-
-### 1. Clone the repository
+### 1. Clone the Repository
 
 bash
-git clone https://github.com/YOUR_USER/dictaria.git
+git clone [https://github.com/YOUR_USER/dictaria.git](https://github.com/YOUR_USER/dictaria.git)
 cd dictaria
+`
 
-2. (Recommended) Create and activate a virtual environment
+### 2\. Create a Virtual Environment (Recommended)
 
+This step isolates Dictaria's dependencies from your system Python.
+
+bash
 python3 -m venv .venv
+# Activate on macOS/Linux
 source .venv/bin/activate
+# Activate on Windows (Command Prompt)
+# .venv\Scripts\activate.bat
 
-3. Install system dependency for audio (PortAudio)
 
-Using Homebrew:
+### 3\. Install System Audio Dependencies (PortAudio)
 
+You must install the system library **PortAudio** before installing the Python dependencies.
+
+#### 🍏 macOS
+
+Use Homebrew to install PortAudio:
+
+bash
 brew install portaudio
 
-4. Install Python dependencies
 
+#### 💻 Windows
+
+No specific system-level installation is typically required. The Python package installer (`pip`) usually handles necessary DLLs for `sounddevice` on Windows.
+
+#### 🐧 Linux (Debian/Ubuntu)
+
+Use your distribution's package manager (e.g., `apt`) to install PortAudio development headers:
+
+bash
+sudo apt update
+sudo apt install libportaudio2 libportaudio-dev
+
+
+### 4\. Install Python Dependencies
+
+Install the required Python libraries using the provided `requirements.txt`:
+
+bash
 pip install -r requirements.txt
 
-This will install:
- - faster-whisper
- - sounddevice
- - soundfile
- - numpy
- - pynput
 
-Running Dictaria
+**Requirements:**
 
-From the project folder:
+  - `faster-whisper`
+  - `sounddevice`
+  - `soundfile`
+  - `numpy`
+  - `pynput` (for the global hotkey)
 
-# (activate the venv if you use one)
-source .venv/bin/activate # on macOS / Linux
+-----
 
+## ▶️ Running Dictaria
+
+From the project folder, with your virtual environment activated:
+
+bash
 python dictaria.py
 
-Dictaria will open a window with:
- - A top bar (title, instructions, theme toggle, language menu)
- - A favorites row (empty at first)
- - A round red record button (disabled until you choose a language)
- - A scrollable text box for transcriptions
- - An optional help panel at the bottom
 
-Global hotkey
- - Default hotkey: Cmd + Shift + J
- - Behavior:
- - If there is an active language, the hotkey toggles recording on and off.
- - If no language is selected, Dictaria prints a small red system message asking you to choose a language first.
+### Initial Use and Setup
 
-The hotkey is implemented using pynput.keyboard.GlobalHotKeys.
-Dictaria must be running for the hotkey to work.
+1.  **Model Download:** The first time you run the script, it will display `[Initializing AI Model... please wait]` while downloading the `medium` Whisper model to your machine. This may take a few minutes.
+2.  **Select Language:** Once the model is loaded, use the **Languages ▾** menu to select your desired languages (up to 5 favorites are recommended).
+3.  **Start Dictation:** Click the round button or press the **Global Hotkey** to start recording.
 
-On a Windows keyboard connected to macOS, use the “Win” key where Cmd is expected.
+## ⌨️ Global Hotkey
 
-Languages
+The global hotkey toggles recording on and off from any running application.
 
-The script defines a set of languages with:
- - Whisper language code
- - Flag emoji
- - Native name
+| OS | Key Combination | Hotkey Label |
+| :--- | :--- | :--- |
+| **macOS** | `Command + Shift + J` | `Cmd + Shift + J` |
+| **Windows/Linux** | `Control + Shift + J` | `Ctrl + Shift + J` |
 
-Example entries:
- - es · 🇪🇸 Español
- - en · 🇬🇧 English
- - ja · 🇯🇵 日本語
- - pt · 🇵🇹 Português
- - fr · 🇫🇷 Français
- - de · 🇩🇪 Deutsch
- - ru · 🇷🇺 Русский
- - he · 🇮🇱 עברית
- - ar · 🇸🇦 العربية
- - zh · 🇨🇳 中文
- - ko · 🇰🇷 한국어
- - pl · 🇵🇱 Polski
- - uk · 🇺🇦 Українська
- - and several more common languages
+> **Note on Hotkeys:** Global hotkey functionality relies on the `pynput` library. On some systems (especially Linux Wayland or certain macOS security settings), the global hotkey may only work reliably when the Dictaria window is focused.
 
-You can select as many languages as you want in the dropdown menu, but only 5 can be marked as favorites at the same time.
+## 🌎 Languages and Favorites
 
-Favorites and active language
- - At the top of the main card there is a favorites row.
- - Favorites are chosen from the language dropdown menu (check the flags you want).
- - Each favorite appears as a flag pill above the record button.
- - Clicking on a favorite flag sets that language as the active language.
- - The active language:
- - Controls which language code is passed to faster-whisper.
- - Controls which flag is visually highlighted.
- - Enables the red record button.
+Dictaria supports an extensive list of languages.
 
-If there is no active language, the record button stays grey and cannot be used.
+  - **Favorites Row:** A row of up to 5 flag icons appears above the record button.
+  - **Active Language:** Clicking a flag sets it as the **Active Language**. The active language determines the code passed to the Whisper model and enables the record button.
+  - **No Active Language:** If no language is selected, the record button remains grey and a system message prompts you to choose one.
 
-Theme and system messages
- - Dictaria starts in dark mode by default.
- - You can toggle dark/light mode with the ☾ / ☀︎ button in the top bar.
- - The choice of theme is saved in a small JSON config file in your home directory.
+## ⚙️ Configuration File
 
-System messages always appear:
- - In English
- - In red
- - In a slightly smaller font
- - Inside the main text box, tagged as system
+Dictaria automatically creates and updates a small JSON file in your home directory (`~/.dictaria_config.json`). This file saves your last settings, ensuring your environment is ready immediately upon next launch.
 
-Examples:
- - [Please choose a language before recording]
- - [Listening / Escuchando...]
- - [Transcribing / Transcribiendo (en)...]
- - [No useful audio recorded]
- - [No text recognized]
- - [Favorites limit reached (5)]
+**Example `~/.dictaria_config.json`:**
 
-Your actual dictated text is inserted in the normal font and color (white in dark mode, black in light mode).
-
-Config file
-
-Dictaria stores a small JSON configuration file in your home directory, for example:
-
+json
 {
- "theme": "dark",
- "favorites": ["es", "en", "ja"],
- "active_language": "es",
- "show_help": false
+ "favorites": ["en", "es", "ja"],
+ "active_language": "en"
 }
 
-It updates automatically when you:
- - Change favorites
- - Change the active language
- - Toggle dark/light mode
- - Show or hide the help panel
 
-Optional: macOS launcher (Automator)
+-----
 
-If you want to launch Dictaria like a normal app, you can create a small .app with Automator that runs:
+## 📝 How it Works Internally
 
-cd /path/to/dictaria
-source .venv/bin/activate
-python dictaria.py
+Dictaria is a single Python script that manages the entire workflow:
 
-This is optional and specific to your setup; the recommended way to run Dictaria is directly via python dictaria.py from the project folder.
+1.  **Initialization:** Loads the selected `faster-whisper` model in a **background thread** to ensure the GUI opens instantly.
+2.  **Recording:** Uses `sounddevice` to stream microphone audio into a buffer (`numpy` array) in real-time.
+3.  **Transcription:** When recording stops, the audio is saved to a temporary `.wav` file.
+4.  **Inference:** `WhisperModel.transcribe()` is called using the **Active Language** code.
+5.  **Output:** The resulting text is appended to the scrollable text box using a **thread-safe mechanism** (`root.after`) to prevent the Tkinter GUI from freezing.
 
-Requirements
+## 📄 Credits and License
 
-Python packages (minimum):
- - faster-whisper
- - sounddevice
- - soundfile
- - numpy
- - pynput
+  - Vibe-coded with ChatGPT (GPT-5.1 Thinking).
+  - Core transcription technology provided by [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
 
-Standard library:
- - tkinter
- - threading
- - queue
- - tempfile
- - json
- - os
+This project is licensed under the **MIT License**.
 
-On macOS you may also need:
- - PortAudio installed via Homebrew:
- - brew install portaudio
 
-Credits
-
-Vibe-coded with ChatGPT (GPT-5.1 Thinking).
-
-License
-
-This project is licensed under the MIT License.
-See the LICENSE file for details.
-
-text
-# requirements.txt
-faster-whisper
-sounddevice
-soundfile
-numpy
-pynput
