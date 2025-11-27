@@ -16,6 +16,7 @@ It listens to your microphone, transcribes audio locally using [faster-whisper](
 * Local transcription with `faster-whisper`. It uses the **Whisper v3 medium model** by default, which offers excellent accuracy.
 * **Automatically copies transcribed text to the system clipboard (portapapeles).**
 * **Pin button** 📌 to keep the window **always on top** (primer plano).
+* **View Collapse Button ⬇️/⬆️:** Allows you to **hide the text area** and minimize the window to a small, non-intrusive strip containing only the language selector and the record button.
 * Multi-language support via a single dropdown:
     * Dictaria’s UI exposes 10 common ones by default: Spanish, English, Japanese, French, German, Italian, Portuguese, Chinese, Russian, Korean.
 * Global and In-Window hotkeys (see table below).
@@ -116,7 +117,7 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
     -- Dictaria Hotkey: Cmd + Option + F9 (communicates via a temporary file)
     local dictaria_hotkey = {"cmd", "alt"} 
     local dictaria_key = "f9"
-    local signal_file = "/tmp/dictaria_signal_f9.txt"  // Must match SIGNAL_FILE in dictaria.py
+    local signal_file = "/tmp/dictaria_signal_f9.txt"  -- Must match SIGNAL_FILE in dictaria.py
 
     hs.hotkey.bind(dictaria_hotkey, dictaria_key, function()
         -- Use 'touch' to create the signal file. Dictaria.py polls and deletes it.
@@ -152,6 +153,8 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
 4.  Press the hotkey again (or click the button) to stop recording and start transcription. **Once transcription is complete, the resulting text will automatically be copied to your clipboard (portapapeles).**
 
 5.  Use the **Pin button** 📌 in the top-left corner to keep the Dictaria window over other applications.
+
+6.  Use the **Collapse button** (⬇️/⬆️) in the top-right corner to **hide the text area** and minimize the window.
 
 ---
 
