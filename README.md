@@ -14,8 +14,8 @@ It listens to your microphone, transcribes audio locally using [faster-whisper](
 
 * Records from the system default microphone.
 * Local transcription with `faster-whisper`. It uses the **Whisper v3 medium model** by default, which offers excellent accuracy.
-* **Automatically copies transcribed text to the system clipboard (portapapeles).**
-* **Pin button** 📌 to keep the window **always on top** (primer plano).
+* **Automatically copies transcribed text to the system clipboard (clipboard).**
+* **Pin button** 📌 to keep the window **always on top** (foreground).
 * **View Collapse Button ⬇️/⬆️:** Allows you to **hide the text area** and minimize the window to a small, non-intrusive strip containing only the language selector and the record button.
 * Multi-language support via a single dropdown:
     * Dictaria’s UI exposes 10 common ones by default: Spanish, English, Japanese, French, German, Italian, Portuguese, Chinese, Russian, Korean.
@@ -74,10 +74,13 @@ Python packages (also listed in `requirements.txt`):
 
     ```bash
     python -m venv .venv
+
     # macOS / Linux
     source .venv/bin/activate
+
     # Windows (PowerShell)
-    .venv\Scripts\Activate.ps1```
+    .venv\Scripts\Activate.ps1
+    ```
 
 3.  Install dependencies:
 
@@ -145,7 +148,7 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
     * macOS: **`Cmd + Option + F9`** (via Hammerspoon)
     * Windows / Linux: **`Ctrl + Alt + F9`**
 
-4.  Press the hotkey again (or click the button) to stop recording and start transcription. **Once transcription is complete, the resulting text will automatically be copied to your clipboard (portapapeles).**
+4.  Press the hotkey again (or click the button) to stop recording and start transcription. **Once transcription is complete, the resulting text will automatically be copied to your clipboard (clipboard).**
 
 5.  Use the **Pin button** 📌 in the top-left corner to keep the Dictaria window over other applications.
 
