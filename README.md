@@ -8,8 +8,6 @@ Dictaria is a small desktop dictation app. Its **compact design** keeps it out o
 
 It listens to your microphone, transcribes audio locally using [faster-whisper](https://github.com/SYSTRAN/faster-whisper), and dumps everything into a simple multi-language text window with a global hotkey.
 
-> VIBE-CODED with ChatGPT (GPT-5.1 Thinking)
-
 ---
 
 ## ✨ Features
