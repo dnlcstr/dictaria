@@ -74,13 +74,10 @@ Python packages (also listed in `requirements.txt`):
 
     ```bash
     python -m venv .venv
-
     # macOS / Linux
     source .venv/bin/activate
-
     # Windows (PowerShell)
-    .venv\Scripts\Activate.ps1
-    ```
+    .venv\Scripts\Activate.ps1```
 
 3.  Install dependencies:
 
@@ -118,12 +115,10 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
     local dictaria_hotkey = {"cmd", "alt"} 
     local dictaria_key = "f9"
     local signal_file = "/tmp/dictaria_signal_f9.txt"  -- Must match SIGNAL_FILE in dictaria.py
-
     hs.hotkey.bind(dictaria_hotkey, dictaria_key, function()
         -- Use 'touch' to create the signal file. Dictaria.py polls and deletes it.
         hs.task.new("/usr/bin/touch", nil, {signal_file}):start()
     end)
-
     hs.alert.show("Dictaria Hotkey (Cmd+Alt+F9) enabled.")
     ```
 4.  **Reload** the configuration (Hammer icon > *Reload Config*). You should see the confirmation alert.
