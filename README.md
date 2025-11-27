@@ -67,17 +67,14 @@ Python packages (also listed in `requirements.txt`):
 
     ```bash
     git clone [https://github.com/dnlcstr/dictaria.git](https://github.com/dnlcstr/dictaria.git)
-    cd dictaria
-    ```
+    cd dictaria```
 
 2.  Create and activate a virtual environment (recommended):
 
     ```bash
     python -m venv .venv
-
     # macOS / Linux
     source .venv/bin/activate
-
     # Windows (PowerShell)
     .venv\Scripts\Activate.ps1
     ```
