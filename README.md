@@ -15,21 +15,18 @@ It listens to your microphone, transcribes audio locally using [faster-whisper](
 * Records from the system default microphone.
 * Local transcription with `faster-whisper` (`medium` model by default).
 * **Automatically copies transcribed text to the system clipboard (portapapeles).**
-* **Pin button** to keep the window **always on top** (primer plano).
-* Multi-language support:
-    * Whisper supports many languages.
+* **Pin button** 📌 to keep the window **always on top** (primer plano).
+* Multi-language support via a single dropdown:
     * Dictaria’s UI exposes 10 common ones by default: Spanish, English, Japanese, French, German, Italian, Portuguese, Chinese, Russian, Korean.
-* Favorite languages bar (up to **3** favorites) with emoji flags.
-* Global hotkey: **(MODIFICADO)**
-    * macOS: **`Cmd + Shift + F12`**
-    * Windows / Linux: **`Ctrl + Shift + F12`**
+* Global hotkey:
+    * macOS: **`Cmd + Option + F9`**
+    * Windows / Linux: **`Ctrl + Alt + F9`**
 * Simple UI:
     * **Compact and minimalist window size.**
     * Circular red button to start/stop recording.
     * Scrollable text area with all transcriptions.
     * Status messages in English: `[Listening...]`, `[Transcribing...]`, etc.
 * Persistent config in `~/.dictaria_config.json`:
-    * Favorite languages.
     * Last active language.
 
 ---
@@ -103,15 +100,15 @@ Python packages (also listed in `requirements.txt`):
     python dictaria.py
     ```
 
-2.  Select your favorite languages (up to **3**) in the **Languages ▾** menu and click a flag to set it as the active language.
+2.  Select your language in the dropdown menu (e.g., "Spanish 🇪🇸") to set it as the active language.
 
-3.  **Start dictation** by clicking the red button or pressing the global hotkey: **(MODIFICADO)**
-    * macOS: **`Cmd + Shift + F12`**
-    * Windows / Linux: **`Ctrl + Shift + F12`**
+3.  **Start dictation** by clicking the red button or pressing the global hotkey:
+    * macOS: **`Cmd + Option + F9`**
+    * Windows / Linux: **`Ctrl + Alt + F9`**
 
 4.  Press the hotkey again (or click the button) to stop recording and start transcription. **Once transcription is complete, the resulting text will automatically be copied to your clipboard (portapapeles).**
 
-5.  Use el **botón de Pin** 📌 en la esquina superior izquierda para mantener la ventana de Dictaria sobre otras aplicaciones.
+5.  Use el **botón de Pin** 📌 en la esquina superior izquierda para mantener la ventana de Dictaria sobre otras aplicaciones.
 
 ---
 
@@ -119,9 +116,8 @@ Python packages (also listed in `requirements.txt`):
 
 Dictaria stores a tiny JSON file in your home directory: `~/.dictaria_config.json`.
 
-* Change favorites in the **Languages ▾** menu (max **3**).
-* Click flags to change the active language.
-* Delete `~/.dictaria_config.json` if you want to reset everything.
+* The last selected language is remembered automatically.
+* Delete `~/.dictaria_config.json` if you want to reset the configuration.
 
 ---
 
@@ -138,10 +134,10 @@ Dictaria stores a tiny JSON file in your home directory: `~/.dictaria_config.jso
     Make sure your terminal (or app wrapper) has access:
     * System Settings → Privacy & Security → Microphone.
 
-3.  **Accessibility Permissions (Global Hotkey)**
-    The global hotkey (`Cmd + Shift + F12`) requires accessibility / input monitoring permissions:
-    * System Settings → Privacy & Security → Accessibility.
-    * Add your terminal (and/or your Dictaria `.app` wrapper) and enable "Allow this app to control your computer".
+3.  **Input Monitoring Permissions (Global Hotkey)**
+    The global hotkey (`Cmd + Option + F9`) requires system-level permissions to work when the app is in the background:
+    * System Settings → Privacy & Security → **Input Monitoring** (or Accessibility).
+    * **You must add the application that runs the Python script** (e.g., Terminal.app, iTerm, or VS Code) and enable its control. If el hotkey falla globalmente, este es el problema.
 
 ---
 
@@ -153,8 +149,8 @@ Dictaria stores a tiny JSON file in your home directory: `~/.dictaria_config.jso
 2.  **Microphone Permissions**
     On recent Windows: Settings → Privacy & security → Microphone. Enable access for desktop apps.
 
-3.  **Global Hotkey** **(MODIFICADO)**
-    The hotkey is **`Ctrl + Shift + F12`**. If it fails globally, use the in-window hotkey (same combo while Dictaria is focused).
+3.  **Global Hotkey**
+    The hotkey is **`Ctrl + Alt + F9`**. If it fails globally, use the in-window hotkey (same combo while Dictaria is focused).
 
 ---
 
@@ -168,8 +164,8 @@ Dictaria stores a tiny JSON file in your home directory: `~/.dictaria_config.jso
                         libportaudio2 libsndfile1
     ```
 
-2.  **Global Hotkey** **(MODIFICADO)**
-    The hotkey is **`Ctrl + Shift + F12`**. If your desktop environment intercepts this shortcut, rely on the in-window hotkey.
+2.  **Global Hotkey**
+    The hotkey is **`Ctrl + Alt + F9`**. If your desktop environment intercepts this shortcut, rely on the in-window hotkey.
 
 ---
 
