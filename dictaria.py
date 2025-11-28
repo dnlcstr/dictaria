@@ -81,8 +81,8 @@ THEME = {
     "record_active_outline": "#dc2626",
     "record_disabled_fill": "#334155",
     "record_disabled_outline": "#475569",
-    "pin_active_fg": "#ff0000",
-    "pin_inactive_fg": "#B36464",
+    "pin_active_fg": "#ffffff",
+    "pin_inactive_fg": "#a4a4a4",
     "scrollbar_trough": "#000000",
     "scrollbar_thumb": "#334155",
 }
