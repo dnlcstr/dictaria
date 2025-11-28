@@ -155,7 +155,7 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
 4.  Press the hotkey again (or click the button) to stop recording and start transcription. **Once transcription is complete, the resulting text will automatically be copied to your clipboard.**
     * If the **Speaker icon** (⟟) is yellow, you will hear a soft sound when the transcription finishes. Click the icon to toggle this audio feedback off (it will turn gray ⦲).
 
-5.  Use the **Pin button** (⟟/⦲) in the top-left corner to keep the Dictaria window over other applications.
+5.  Use the **Pin button** (⦾/⦿) in the top-left corner to keep the Dictaria window over other applications.
 
 6.  Use the **Collapse button** (△/▽) in the top-right corner to **hide the text area** and minimize the window.
 
