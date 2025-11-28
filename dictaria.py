@@ -61,6 +61,13 @@ COMPUTE_TYPE = "int8"
 # Only change this if you know what you are doing and keep recorder/config in sync.
 SAMPLE_RATE = 16000
 
+# INTERNAL_MIC_HINT: substring used to force the internal MacBook microphone on macOS.
+# The code will search all input devices and pick the first one whose name contains
+# this text (case-insensitive). If nothing matches, it falls back to the default device.
+# For most MacBooks, "MacBook" is enough. You can make it more specific if you want,
+# e.g. "MacBook Pro Microphone" or "MacBook Air Microphone".
+INTERNAL_MIC_HINT = "MacBook"
+
 # CONFIG_PATH: path to the JSON file where Dictaria stores user settings
 # (currently only the last active language).
 # You can change the filename or directory if you want separate profiles.
@@ -69,8 +76,8 @@ CONFIG_PATH = os.path.expanduser("~/.dictaria_config.json")
 
 # Theme (dark / slate)
 THEME = {
-    "root_bg": "#0f0f0f",
-    "topbar_bg": "#0f0f0f",
+    "root_bg": "#323232",
+    "topbar_bg": "#323232",
     "topbar_fg": "#f1f5f9",
     "card_bg": "#1e293b",
     "border_color": "#f1f5f9",
@@ -181,7 +188,7 @@ class AudioRecorder:
         self.queue.put(indata.copy())
 
     def start(self):
-        """Start streaming from the default input device."""
+        """Start streaming from the chosen input device."""
         if self.is_recording:
             return
         
@@ -190,11 +197,29 @@ class AudioRecorder:
             self.queue.queue.clear()
             
         try:
+            # On macOS, try to force the internal MacBook microphone using INTERNAL_MIC_HINT.
+            # If nothing matches or something goes wrong, fall back to the default input device.
+            input_device = None
+            if IS_MAC and INTERNAL_MIC_HINT:
+                try:
+                    devices = sd.query_devices()
+                    hint_lower = INTERNAL_MIC_HINT.lower()
+                    for idx, dev in enumerate(devices):
+                        if dev.get("max_input_channels", 0) > 0 and hint_lower in dev.get("name", "").lower():
+                            input_device = idx
+                            print(f"Using forced macOS input device: {dev['name']} (index {idx})")
+                            break
+                    if input_device is None:
+                        print("[System] No input device matched INTERNAL_MIC_HINT, using default input device.")
+                except Exception as e:
+                    print(f"[System] Warning: could not query input devices, using default. {e}")
+
             self.stream = sd.InputStream(
                 samplerate=self.sample_rate,
                 channels=1,
                 dtype="float32",
                 callback=self._callback,
+                device=input_device,  # None → default; index → specific device
             )
             self.stream.start()
             self.is_recording = True
