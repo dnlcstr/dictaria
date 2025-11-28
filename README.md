@@ -144,7 +144,7 @@ Download and install [Hammerspoon](https://www.hammerspoon.org/). It requires **
     python dictaria.py
     ```
 
-2. Select your language in the dropdown menu (e.g., "Spanish 🇪🇸") to set it as the active language.
+2. Select your language in the dropdown menu to set it as the active language.
 
 3. **Start dictation** by clicking the red button or pressing the global hotkey:
     * macOS: **`Cmd + Option + F9`** (via Hammerspoon)
