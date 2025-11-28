@@ -66,17 +66,18 @@ class Language(NamedTuple):
     name: str
     
 LANG_DEFS: Dict[str, Language] = {
-    "es": Language("es", "🇪🇸", "Spanish"),
     "en": Language("en", "🇬🇧", "English"),
-    "ja": Language("ja", "🇯🇵", "Japanese"),
-    "fr": Language("fr", "🇫🇷", "French"),
-    "de": Language("de", "🇩🇪", "German"),
-    "it": Language("it", "🇮🇹", "Italian"),
-    "pt": Language("pt", "🇵🇹", "Portuguese"),
-    "zh": Language("zh", "🇨🇳", "Chinese"),
-    "ru": Language("ru", "🇷🇺", "Russian"),
-    "ko": Language("ko", "🇰🇷", "Korean"),
+    "zh": Language("zh", "🇨🇳", "中文"),
+    "es": Language("es", "🇪🇸", "Español"),
+    "ja": Language("ja", "🇯🇵", "日本語"), 
+    "fr": Language("fr", "🇫🇷", "Français"), 
+    "de": Language("de", "🇩🇪", "Deutsch"), 
+    "it": Language("it", "🇮🇹", "Italiano"), 
+    "pt": Language("pt", "🇵🇹", "Português"), 
+    "ru": Language("ru", "🇷🇺", "Русский"), 
+    "ko": Language("ko", "🇰🇷", "한국어"), 
 }
+
 LANG_CODES: List[str] = list(LANG_DEFS.keys())
 LANG_OPTIONS: List[str] = [f"{v.name} {v.flag}" for v in LANG_DEFS.values()]
 
