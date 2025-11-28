@@ -67,22 +67,22 @@ CONFIG_PATH = os.path.expanduser("~/.dictaria_config.json")
 
 # Theme (dark / slate)
 THEME = {
-    "root_bg": "#0f172a",
-    "topbar_bg": "#0f172a",
+    "root_bg": "#0f0f0f",
+    "topbar_bg": "#0f0f0f",
     "topbar_fg": "#f1f5f9",
     "card_bg": "#1e293b",
-    "border_color": "#334155",
+    "border_color": "#f1f5f9",
     "text_frame_bg": "#1e293b",
     "text_box_bg": "#0D1116",
     "text_fg": "#f1f5f9",
-    "record_idle_fill": "#ef4444",
+    "record_idle_fill": "#d61d1d",
     "record_idle_outline": "#ef4444",
     "record_active_fill": "#fca5a5",
     "record_active_outline": "#dc2626",
     "record_disabled_fill": "#334155",
     "record_disabled_outline": "#475569",
-    "pin_active_fg": "#38bdf8",
-    "pin_inactive_fg": "#64748b",
+    "pin_active_fg": "#ff0000",
+    "pin_inactive_fg": "#B36464",
     "scrollbar_trough": "#000000",
     "scrollbar_thumb": "#334155",
 }
